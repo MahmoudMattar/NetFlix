@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components/macro";
 
 export const Container = styled.div`
@@ -33,9 +32,9 @@ export const Title = styled.h1`
 
 export const Item = styled.div`
   color: white;
-  margin-bottom: 10px;
-  margin: auto;
-  max-width: 670px;
+  margin: 5px auto;
+
+  max-width: 700px;
   width: 100%;
 
   &:first-of-type {
