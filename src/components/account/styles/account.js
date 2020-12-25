@@ -331,6 +331,11 @@ export const CancelBtnMobile = styled.button`
         display: none;
     }
 `;
+
+export const VisaIcon = styled.div`
+    font-size: 2rem;
+`;
+
 // export const ArrowIcon = styled.i`
 //     color: bababa;
 //     position: absolute;

@@ -2,7 +2,8 @@ import React from 'react';
 import { Container, Title, Side_Title, Name,Frame,
   SubContainer,Br,Background,TextLink,InnerContainer,
   Main,Info_Details,Link_style,CancelBtnMobile,
-  Password,Text,Link,Break,CancelBtn,Picture,Row,Phone } from './styles/account';
+  Password,Text,Link,Break,CancelBtn,Picture,Row,Phone,VisaIcon } from './styles/account';
+  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Account({ children, ...restProps }) {
     return <Account {...restProps}>{children}</Account>;
@@ -78,6 +79,6 @@ Account.Main = function AccountMain({ children, ...restProps }) {
 Account.Container = function AccountContainer({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;
 };
-// Account.ArrowIcon = function AccountArrowIcon({ children, ...restProps }) {
-//   return <FontAwesomeIcon {...restProps}>{children}</FontAwesomeIcon>;
-// };
+Account.VisaIcon = function AccountVisaIcon({ children, ...restProps }) {
+  return <FontAwesomeIcon {...restProps}>{children}</FontAwesomeIcon>;
+};

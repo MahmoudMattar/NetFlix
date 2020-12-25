@@ -107,22 +107,6 @@ export function SelectAccountContainer({ children, user }) {
               </Account.Link>
             </Account.Frame> */}
 
-
-      {/* <Account.Frame>
-              <Account.Side_Title>My Profile</Account.Side_Title>
-              <Account.Link>
-                <Account.Row><Account.Picture></Account.Picture></Account.Row>
-                <Account.Row>Add profile email</Account.Row>
-                <Account.Row>Language</Account.Row>
-                <Account.Row>Playback settings</Account.Row>
-                <Account.Row>Side_Title appearance</Account.Row>
-                <Account.Row>Viewing activity</Account.Row>
-                <Account.Row>Ratings</Account.Row>
-              </Account.Link>
-            </Account.Frame> */}
-      {/* </Account.Frame> */}
-      {/* </Account.Background> */}
-
       <Account.Main>
         <Account.Container>
           <Account.Title>Account</Account.Title>
@@ -150,7 +134,7 @@ export function SelectAccountContainer({ children, user }) {
               <Account.InnerContainer>
               <Account.SubContainer>
 
-                  <Account.Row>1234 1234 1234 1234</Account.Row>
+                  <Account.Row><i className={`fab fa-cc-visa ${Account.VisaIcon}`}></i> 1234 1234 1234 1234</Account.Row>
                   <Account.Link>
                     <Account.Row><Account.Link_style>Update Payment info</Account.Link_style></Account.Row>
                     <Account.Row><Account.Link_style>Billing details</Account.Link_style></Account.Row>
