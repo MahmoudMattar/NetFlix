@@ -5,7 +5,9 @@ import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 import { FooterContainer } from '../containers/footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes,faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faTimes,faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import {Link} from 'react-router-dom';
+
 
 export function SelectAccountContainer({ children, user }) {
   const [category, setCategory] = useState('series');
@@ -38,7 +40,7 @@ export function SelectAccountContainer({ children, user }) {
                 <Header.TextLink>{user.displayName}</Header.TextLink>
               </Header.Group>
               <Header.Group>
-                <Header.Account path={ROUTES.ACCOUNT} />
+                <Header.TextLink to={ROUTES.ACCOUNT}><Link style={{color: "white",textDecoration:"none"}} to={ROUTES.ACCOUNT}>Account</Link></Header.TextLink>
               </Header.Group>
               <Header.Group>
                 <Header.TextLink onClick={() => firebase.auth().signOut()}>Sign out</Header.TextLink>

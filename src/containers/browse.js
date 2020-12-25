@@ -68,12 +68,7 @@ export function BrowseContainer({ slides }) {
                   <Header.TextLink>{user.displayName}</Header.TextLink>
                 </Header.Group>
                 <Header.Group>
-                  {/* <Header.TextLink path={ROUTES.ACCOUNT}>Account</Header.TextLink > */}
-                  {/* <Link to="/account" >Users</Link> */}
-                  {/* <a to="/account" >Users</a> */}
-                  {/* <Link to={ROUTES.ACCOUNT}>Account</Link> */}
-                  <Header.TextLink to={ROUTES.ACCOUNT}><Link to={ROUTES.ACCOUNT}>Account</Link></Header.TextLink>
-                  {/* <Header.TextLink to={ROUTES.ACCOUNT}>profile</Header.TextLink> */}
+                  <Header.TextLink to={ROUTES.ACCOUNT}><Link style={{color: "white",textDecoration:"none"}} to={ROUTES.ACCOUNT}>Account</Link></Header.TextLink>
                 </Header.Group>
                 <Header.Group>
                   <Header.TextLink onClick={() => firebase.auth().signOut()}>Sign out</Header.TextLink>
