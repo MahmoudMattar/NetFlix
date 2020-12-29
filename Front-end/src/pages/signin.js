@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:src/pages/sign-in.js
+=======
+>>>>>>> mattar
 import React, { useState, useContext } from 'react';
 import { Redirect, Route, useHistory } from 'react-router-dom'; //push to different pages
 import { FirebaseContext } from '../context/firebase';
@@ -92,6 +95,7 @@ export default function SignIn() {
     </>
   );
 }
+<<<<<<< HEAD
 =======
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -165,3 +169,5 @@ export default function SignIn() {
   );
 }
 >>>>>>> 9cdd1b3531e8f5ce69796381e3bfda5a96ce3392:Front-end/src/pages/signin.js
+=======
+>>>>>>> mattar

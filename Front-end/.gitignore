@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:.gitignore
 node_modules
 =======
+=======
+>>>>>>> mattar
 # bye
 src/lib/firebase.js
 
@@ -25,4 +28,7 @@ src/lib/firebase.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 >>>>>>> 9cdd1b3531e8f5ce69796381e3bfda5a96ce3392:Front-end/.gitignore
+=======
+>>>>>>> mattar

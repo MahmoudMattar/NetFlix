@@ -40,6 +40,12 @@ export function BrowseContainer({ slides }) {
       setSlideRows(slides[category]);
     }
   }, [searchTerm]);
+<<<<<<< HEAD
+=======
+  
+
+  //get films from MongoDb
+>>>>>>> mattar
 
   useEffect(() => {
     axios

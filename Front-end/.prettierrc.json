@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "printWidth": 80,
   "eslintIntegration": true,
@@ -8,4 +9,16 @@
   "env": {
     "browser": true,
     "es6": true
+=======
+{
+  "printWidth": 80,
+  "eslintIntegration": true,
+  "stylelintIntegration": true,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "semi": false,
+  "env": {
+    "browser": true,
+    "es6": true
+>>>>>>> mattar
   }}

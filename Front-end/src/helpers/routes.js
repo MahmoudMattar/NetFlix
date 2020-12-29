@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:src/helpers/routes.js
+=======
+>>>>>>> mattar
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
@@ -56,6 +59,7 @@ export function ProtectedRoute({ user, children, ...rest }) {
     />
   );
 }
+<<<<<<< HEAD
 =======
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
@@ -111,3 +115,5 @@ export function ProtectedRoute({ user, children, ...rest }) {
   );
 }
 >>>>>>> 9cdd1b3531e8f5ce69796381e3bfda5a96ce3392:Front-end/src/helpers/routes.js
+=======
+>>>>>>> mattar
