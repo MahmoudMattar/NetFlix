@@ -28,7 +28,11 @@ export default function Plans() {
     const { status } = response.data;
     console.log("Response:", response.data);
     if(response.data.status == "success"){
+      alert("Thanks for subscription");
       history.push(ROUTES.BROWSE);
+    }else{
+      alert("Please try again!");
+
     }
     }
   function valueOne(event){
