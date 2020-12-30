@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
 import Fuse from 'fuse.js'
-import { Card, Header, Loading, Player } from '../components'
+import { Card, Header, Loading, Player, Account } from '../components'
 import * as ROUTES from '../constants/routes'
 import logo from '../logo.svg'
 import { FirebaseContext } from '../context/firebase'
 import { SelectProfileContainer } from './profiles'
 import { FooterContainer } from './footer'
-import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 export function BrowseContainer({ slides }) {
   const [category, setCategory] = useState('series')
@@ -41,19 +41,6 @@ export function BrowseContainer({ slides }) {
     }
   }, [searchTerm])
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:3100/api/films')
-      .then((result) => {
-        if (result) {
-          console.log(result)
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  })
-
   return profile.displayName ? (
     <>
       {loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
@@ -85,7 +72,24 @@ export function BrowseContainer({ slides }) {
               <Header.Dropdown>
                 <Header.Group>
                   <Header.Picture src={user.photoURL} />
-                  <Header.TextLink>{user.displayName}</Header.TextLink>
+                  <Header.TextLink to={ROUTES.ACCOUNT}>
+                    <Link
+                      style={{ color: 'white', textDecoration: 'none' }}
+                      to={ROUTES.ACCOUNT}
+                    >
+                      {user.displayName}
+                    </Link>
+                  </Header.TextLink>
+                </Header.Group>
+                <Header.Group>
+                  <Header.TextLink to={ROUTES.ACCOUNT}>
+                    <Link
+                      style={{ color: 'white', textDecoration: 'none' }}
+                      to={ROUTES.ACCOUNT}
+                    >
+                      Settings
+                    </Link>
+                  </Header.TextLink>
                 </Header.Group>
                 <Header.Group>
                   <Header.TextLink onClick={() => firebase.auth().signOut()}>
@@ -130,7 +134,7 @@ export function BrowseContainer({ slides }) {
             <Card.Feature category={category}>
               <Player>
                 <Player.Button />
-                <Player.Video src="/video/bunny.mp4" />
+                <Player.Video src="/videos/bunny.mp4" />
               </Player>
             </Card.Feature>
           </Card>

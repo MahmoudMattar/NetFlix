@@ -5,12 +5,12 @@ import { HeaderContainer } from '../containers/header'
 import { FooterContainer } from '../containers/footer'
 import { Plan } from '../components'
 import * as ROUTES from '../constants/routes'
-import { Button } from './../components/plan/styles/plan'
 import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
-const stripe = require('stripe')(
-  'sk_test_51I2KqVDroAwyxUrvjNzUqyzm71UY0pyKqnIov2Xfox1TXz2EZUHkACIHPQMfc9RbrYkfRXke4jUF6uHMzeoRCLSU00FYHvx6Lm'
-)
+
+// const stripe = require('stripe')(
+//   'sk_test_51I2KqVDroAwyxUrvjNzUqyzm71UY0pyKqnIov2Xfox1TXz2EZUHkACIHPQMfc9RbrYkfRXke4jUF6uHMzeoRCLSU00FYHvx6Lm'
+// )
 
 export default function Plans() {
   const history = useHistory()

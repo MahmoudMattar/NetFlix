@@ -23,7 +23,7 @@ export default function SignUp() {
     event.preventDefault()
 
     //MongoDb Save
-    return axios
+    axios
       .post(' http://localhost:3100/api/users/register', {
         name,
         email,

@@ -4,8 +4,8 @@ import { Header, Account } from '../components'
 import * as ROUTES from '../constants/routes'
 import logo from '../logo.svg'
 import { FooterContainer } from '../containers/footer'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faTimes, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
 export function SelectAccountContainer({ children, user }) {

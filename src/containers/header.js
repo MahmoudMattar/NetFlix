@@ -1,7 +1,7 @@
-import React from 'react'
-import { Header } from '../components'
-import * as ROUTES from '../constants/routes'
-import logo from '../logo.svg'
+import React from 'react';
+import { Header } from '../components';
+import * as ROUTES from '../constants/routes';
+import logo from '../logo.svg';
 
 export function HeaderContainer({ children }) {
   return (
@@ -12,5 +12,5 @@ export function HeaderContainer({ children }) {
       </Header.Frame>
       {children}
     </Header>
-  )
+  );
 }

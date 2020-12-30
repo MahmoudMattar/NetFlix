@@ -21,7 +21,7 @@ export default function SignIn() {
   const handleSignin = (event) => {
     event.preventDefault()
 
-    return axios
+    axios
       .post('http://localhost:3100/api/users/login', { email, password })
       .then((result) => {
         if (result.data.token) {
