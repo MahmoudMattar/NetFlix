@@ -1,30 +1,26 @@
-<<<<<<< HEAD
-<<<<<<< HEAD:src/pages/sign-up.js
-=======
->>>>>>> mattar
-import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { FirebaseContext } from '../context/firebase';
-import { Form } from '../components';
-import { HeaderContainer } from '../containers/header';
-import { FooterContainer } from '../containers/footer';
-import * as ROUTES from '../constants/routes';
-import axios from 'axios';
+import React, { useState, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+import { FirebaseContext } from '../context/firebase'
+import { Form } from '../components'
+import { HeaderContainer } from '../containers/header'
+import { FooterContainer } from '../containers/footer'
+import * as ROUTES from '../constants/routes'
+import axios from 'axios'
 
 export default function SignUp() {
-  const history = useHistory();
-  const { firebase } = useContext(FirebaseContext);
+  const history = useHistory()
+  const { firebase } = useContext(FirebaseContext)
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [error, setError] = useState('');
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [password2, setPassword2] = useState('')
+  const [error, setError] = useState('')
 
-  const isInvalid = name === '' || password === '' || email === '';
+  const isInvalid = name === '' || password === '' || email === ''
 
   const handleSignup = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     //MongoDb Save
     return axios
@@ -35,12 +31,12 @@ export default function SignUp() {
         password2,
       })
       .then((result) => {
-        console.log('User Saved');
-        history.push(ROUTES.SIGN_IN);
+        console.log('User Saved')
+        history.push(ROUTES.SIGN_IN)
       })
       .catch((error) => {
-        console.log(error.response.data.message);
-      });
+        console.log(error.response.data.message)
+      })
 
     return firebase
       .auth()
@@ -52,16 +48,16 @@ export default function SignUp() {
             photoURL: Math.floor(Math.random() * 5) + 1,
           })
           .then(() => {
-            history.push(ROUTES.BROWSE);
+            history.push(ROUTES.BROWSE)
           })
       )
       .catch((error) => {
-        setName('');
-        setEmail('');
-        setPassword('');
-        setError(error.message);
-      });
-  };
+        setName('')
+        setEmail('')
+        setPassword('')
+        setError(error.message)
+      })
+  }
 
   return (
     <>
@@ -115,95 +111,5 @@ export default function SignUp() {
       </HeaderContainer>
       <FooterContainer />
     </>
-  );
+  )
 }
-<<<<<<< HEAD
-=======
-import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { FirebaseContext } from '../context/firebase';
-import { Form } from '../components';
-import { HeaderContainer } from '../containers/header';
-import { FooterContainer } from '../containers/footer';
-import * as ROUTES from '../constants/routes';
-
-export default function SignUp() {
-  const history = useHistory();
-  const { firebase } = useContext(FirebaseContext);
-
-  const [firstName, setFirstName] = useState('');
-  const [emailAddress, setEmailAddress] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const isInvalid = firstName === '' || password === '' || emailAddress === '';
-
-  const handleSignup = (event) => {
-    event.preventDefault();
-
-    return firebase
-      .auth()
-      .createUserWithEmailAndPassword(emailAddress, password)
-      .then((result) =>
-        result.user
-          .updateProfile({
-            displayName: firstName,
-            photoURL: Math.floor(Math.random() * 5) + 1,
-          })
-          .then(() => {
-            history.push(ROUTES.BROWSE);
-          })
-      )
-      .catch((error) => {
-        setFirstName('');
-        setEmailAddress('');
-        setPassword('');
-        setError(error.message);
-      });
-  };
-
-  return (
-    <>
-      <HeaderContainer>
-        <Form>
-          <Form.Title>Sign Up</Form.Title>
-          {error && <Form.Error>{error}</Form.Error>}
-
-          <Form.Base onSubmit={handleSignup} method="POST">
-            <Form.Input
-              placeholder="First name"
-              value={firstName}
-              onChange={({ target }) => setFirstName(target.value)}
-            />
-            <Form.Input
-              placeholder="Email address"
-              value={emailAddress}
-              onChange={({ target }) => setEmailAddress(target.value)}
-            />
-            <Form.Input
-              type="password"
-              value={password}
-              autoComplete="off"
-              placeholder="Password"
-              onChange={({ target }) => setPassword(target.value)}
-            />
-            <Form.Submit disabled={isInvalid} type="submit" data-testid="sign-up">
-              Sign Up
-            </Form.Submit>
-          </Form.Base>
-
-          <Form.Text>
-            Already a user? <Form.Link to="/signin">Sign in now.</Form.Link>
-          </Form.Text>
-          <Form.TextSmall>
-            This page is protected by Google reCAPTCHA to ensure you're not a bot. Learn more.
-          </Form.TextSmall>
-        </Form>
-      </HeaderContainer>
-      <FooterContainer />
-    </>
-  );
-}
->>>>>>> 9cdd1b3531e8f5ce69796381e3bfda5a96ce3392:Front-end/src/pages/signup.js
-=======
->>>>>>> mattar

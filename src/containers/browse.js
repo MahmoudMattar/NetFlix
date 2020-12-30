@@ -1,64 +1,58 @@
-import React, { useState, useEffect, useContext } from 'react';
-import Fuse from 'fuse.js';
-import { Card, Header, Loading, Player } from '../components';
-import * as ROUTES from '../constants/routes';
-import logo from '../logo.svg';
-import { FirebaseContext } from '../context/firebase';
-import { SelectProfileContainer } from './profiles';
-import { FooterContainer } from './footer';
-import axios from 'axios';
+import React, { useState, useEffect, useContext } from 'react'
+import Fuse from 'fuse.js'
+import { Card, Header, Loading, Player } from '../components'
+import * as ROUTES from '../constants/routes'
+import logo from '../logo.svg'
+import { FirebaseContext } from '../context/firebase'
+import { SelectProfileContainer } from './profiles'
+import { FooterContainer } from './footer'
+import axios from 'axios'
 
 export function BrowseContainer({ slides }) {
-  const [category, setCategory] = useState('series');
-  const [profile, setProfile] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [slideRows, setSlideRows] = useState([]);
+  const [category, setCategory] = useState('series')
+  const [profile, setProfile] = useState({})
+  const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [slideRows, setSlideRows] = useState([])
 
-  const { firebase } = useContext(FirebaseContext);
-  const user = firebase.auth().currentUser || {};
+  const { firebase } = useContext(FirebaseContext)
+  const user = firebase.auth().currentUser || {}
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, [profile.displayName]);
+      setLoading(false)
+    }, 3000)
+  }, [profile.displayName])
 
   useEffect(() => {
-    setSlideRows(slides[category]);
-  }, [slides, category]);
+    setSlideRows(slides[category])
+  }, [slides, category])
 
   useEffect(() => {
     const fuse = new Fuse(slideRows, {
       keys: ['data.description', 'data.title', 'data.genre'],
-    });
-    const results = fuse.search(searchTerm).map(({ item }) => item);
+    })
+    const results = fuse.search(searchTerm).map(({ item }) => item)
 
     if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
-      setSlideRows(results);
+      setSlideRows(results)
     } else {
-      setSlideRows(slides[category]);
+      setSlideRows(slides[category])
     }
-  }, [searchTerm]);
-<<<<<<< HEAD
-=======
-  
-
-  //get films from MongoDb
->>>>>>> mattar
+  }, [searchTerm])
 
   useEffect(() => {
     axios
       .get('http://localhost:3100/api/films')
       .then((result) => {
         if (result) {
-          console.log(result);
+          console.log(result)
         }
       })
       .catch((error) => {
-        console.log(error);
-      });
-  });
+        console.log(error)
+      })
+  })
 
   return profile.displayName ? (
     <>
@@ -146,5 +140,5 @@ export function BrowseContainer({ slides }) {
     </>
   ) : (
     <SelectProfileContainer user={user} setProfile={setProfile} />
-  );
+  )
 }
