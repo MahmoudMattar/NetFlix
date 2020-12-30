@@ -1,26 +1,26 @@
-import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { FirebaseContext } from '../context/firebase';
-import { Form } from '../components';
-import { HeaderContainer } from '../containers/header';
-import { FooterContainer } from '../containers/footer';
-import * as ROUTES from '../constants/routes';
-import axios from 'axios';
+import React, { useState, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+import { FirebaseContext } from '../context/firebase'
+import { Form } from '../components'
+import { HeaderContainer } from '../containers/header'
+import { FooterContainer } from '../containers/footer'
+import * as ROUTES from '../constants/routes'
+import axios from 'axios'
 
 export default function SignUp() {
-  const history = useHistory();
-  const { firebase } = useContext(FirebaseContext);
+  const history = useHistory()
+  const { firebase } = useContext(FirebaseContext)
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [error, setError] = useState('');
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [password2, setPassword2] = useState('')
+  const [error, setError] = useState('')
 
-  const isInvalid = name === '' || password === '' || email === '';
+  const isInvalid = name === '' || password === '' || email === ''
 
   const handleSignup = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     //MongoDb Save
     return axios
@@ -31,12 +31,12 @@ export default function SignUp() {
         password2,
       })
       .then((result) => {
-        console.log('User Saved');
-        history.push(ROUTES.SIGN_IN);
+        console.log('User Saved')
+        history.push(ROUTES.SIGN_IN)
       })
       .catch((error) => {
-        console.log(error.response.data.message);
-      });
+        console.log(error.response.data.message)
+      })
 
     return firebase
       .auth()
@@ -48,16 +48,16 @@ export default function SignUp() {
             photoURL: Math.floor(Math.random() * 5) + 1,
           })
           .then(() => {
-            history.push(ROUTES.BROWSE);
+            history.push(ROUTES.BROWSE)
           })
       )
       .catch((error) => {
-        setName('');
-        setEmail('');
-        setPassword('');
-        setError(error.message);
-      });
-  };
+        setName('')
+        setEmail('')
+        setPassword('')
+        setError(error.message)
+      })
+  }
 
   return (
     <>
@@ -111,5 +111,5 @@ export default function SignUp() {
       </HeaderContainer>
       <FooterContainer />
     </>
-  );
+  )
 }

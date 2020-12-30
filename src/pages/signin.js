@@ -1,52 +1,52 @@
-import React, { useState, useContext } from 'react';
-import { Redirect, Route, useHistory } from 'react-router-dom'; //push to different pages
-import { FirebaseContext } from '../context/firebase';
-import { HeaderContainer } from '../containers/header';
-import { FooterContainer } from '../containers/footer';
-import { Form } from '../components';
-import * as ROUTES from '../constants/routes';
-import axios from 'axios';
+import React, { useState, useContext } from 'react'
+import { Redirect, Route, useHistory } from 'react-router-dom' //push to different pages
+import { FirebaseContext } from '../context/firebase'
+import { HeaderContainer } from '../containers/header'
+import { FooterContainer } from '../containers/footer'
+import { Form } from '../components'
+import * as ROUTES from '../constants/routes'
+import axios from 'axios'
 
 export default function SignIn() {
-  const history = useHistory();
-  const { firebase } = useContext(FirebaseContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const history = useHistory()
+  const { firebase } = useContext(FirebaseContext)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   //check form input ele are valid
-  const isInvalid = password === '' || email === '';
+  const isInvalid = password === '' || email === ''
   //email && password
 
   const handleSignin = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     return axios
       .post('http://localhost:3100/api/users/login', { email, password })
       .then((result) => {
         if (result.data.token) {
-          console.log(result.data.token);
-          localStorage.setItem('jwtToken', result.data.token);
-          history.push(ROUTES.BROWSE);
+          console.log(result.data.token)
+          localStorage.setItem('jwtToken', result.data.token)
+          history.push(ROUTES.BROWSE)
         }
       })
       .catch((error) => {
-        console.log(error);
-      });
+        console.log(error)
+      })
 
     //FirBase Business
     return firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        history.push(ROUTES.BROWSE);
+        history.push(ROUTES.BROWSE)
       })
       .catch((error) => {
-        setEmail('');
-        setPassword('');
-        setError(error.message);
-      });
-  };
+        setEmail('')
+        setPassword('')
+        setError(error.message)
+      })
+  }
 
   return (
     <>
@@ -89,5 +89,5 @@ export default function SignIn() {
 
       <FooterContainer />
     </>
-  );
+  )
 }
