@@ -17,9 +17,9 @@ export function App() {
         <IsUserRedirect user={user} loggedInPath={ROUTES.BROWSE} path={ROUTES.SIGN_UP}>
           <SignUp />
         </IsUserRedirect>
-        <IsUserRedirect  loggedInPath={ROUTES.ACCOUNT} path={ROUTES.ACCOUNT}>
+        <ProtectedRoute user={user} loggedInPath={ROUTES.ACCOUNT} path={ROUTES.ACCOUNT}>
           <Account/>
-        </IsUserRedirect>
+        </ProtectedRoute>
         <ProtectedRoute user={user} path={ROUTES.BROWSE}>
           <Browse />
         </ProtectedRoute>

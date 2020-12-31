@@ -97,7 +97,7 @@ export const Frame = styled.div`
 
 // `;
 
-// export const Name = styled.p`
+// export const Email = styled.p`
 //     color: #808080;
 //     // text-overflow: ellipsis;
 //     font-size: 16px;
@@ -278,7 +278,10 @@ export const SubContainer = styled.div`
     }
 `;
 
-export const Name = styled.div`
+export const Email = styled.div`
+    font-weight: bold;
+`;
+export const Input = styled.input`
     font-weight: bold;
 `;
 
@@ -334,6 +337,10 @@ export const CancelBtnMobile = styled.button`
 
 export const VisaIcon = styled.div`
     font-size: 2rem;
+`;
+
+export const Redeem = styled.span`
+    // font-size: 2rem;
 `;
 
 // export const ArrowIcon = styled.i`
