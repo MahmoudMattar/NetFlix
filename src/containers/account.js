@@ -1,10 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { FirebaseContext } from "../context/firebase";
+import 'firebase/auth';
 import { Header, Account } from '../components';
 import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 import { FooterContainer } from '../containers/footer';
+// import firebase from "firebase/app";
+// import "firebase/database";
+
 import { Link } from 'react-router-dom';
+// import { FirebaseDatabaseProvider } from "@react-firebase/database";
+// import * as admin from 'firebase-admin';
+
 
 
 export function SelectAccountContainer({ children, user }) {
@@ -27,16 +34,47 @@ export function SelectAccountContainer({ children, user }) {
   user = firebase.auth().currentUser || {};
 
   useEffect(() => {
-    console.log(changeEmail);
+    // console.log(user.photoURL)
+    try {
+      //update the user Email
+      if (changeEmail !== '' && EmailInput === false) {
+        // changeEmail = user.email;
+        // console.log(changeEmail)
+        user.updateEmail(changeEmail).then(function () {
+          // Update successful.
+          console.log(user.email)
 
-  }, [changeEmail]);
+        }).catch(function (error) {
+          // An error happened.
+        });
 
-  useEffect(() => {
+      }
+     
+    } catch (err) {
 
-    console.log(changePassword);
+    }
 
-  }, [changePassword]);
+    try {
+      //update the user Password
+      if (changePassword !== '' && PasswordInput === false) {
+        // changeEmail = user.email;
+        // console.log(changeEmail)
+        user.updatePassword(changePassword).then(function () {
+          // Update successful.
+          firebase.auth().signOut();
 
+        }).catch(function (error) {
+          // An error happened.
+        });
+
+      }
+    } catch (err) {
+
+    }
+
+  });
+
+  
   useEffect(() => {
 
     console.log(changePhone);
@@ -122,7 +160,8 @@ export function SelectAccountContainer({ children, user }) {
                       onBlur={(e) => {
                         setPasswordInput(false);
                       }}
-                    ></Account.Input> : <Account.Password>Password: *******</Account.Password>}
+                    ></Account.Input> : 
+                  <Account.Password>Password: ******</Account.Password>}
 
                   {PhoneInput ?
                     <Account.Input
@@ -145,15 +184,22 @@ export function SelectAccountContainer({ children, user }) {
                   </Account.Row>
 
                   <Account.Row>
-                    <Account.Link_style onClick={() => setPasswordInput(true)}>
-                      Change password
+                  <Account.Link_style onClick={() => {
+                      setPasswordInput(true);
+                      // firebase.auth().sendPasswordResetEmail('zredo100@gmail.com');
+                      // alert('A Reset Password email has sent to your email')
+
+                    }}>
+                      Reset your password
                       </Account.Link_style>
-                  </Account.Row>
-                  <Account.Row>
-                    <Account.Link_style onClick={() => setPhoneInput(true)}>
-                      Change phone number
+                    <Account.Row>
+                      <Account.Link_style onClick={() => setPhoneInput(true)}>
+                        Change phone number
                       </Account.Link_style>
+                    </Account.Row>
+                    
                   </Account.Row>
+
                 </Account.Link>
               </Account.SubContainer>
               <Account.InnerContainer>
@@ -188,39 +234,40 @@ export function SelectAccountContainer({ children, user }) {
                 </Account.SubContainer>
               </Account.InnerContainer>
               <Account.InnerContainer>
-                
-              <Account.Link>
 
-                <Account.Row>
-                  <Account.Link_style onClick={() => setRedeemInput(true)}>
-                    Redeem gift card or promo code
+                <Account.Link>
+
+                  <Account.Row>
+                    <Account.Link_style onClick={() => setRedeemInput(true)}>
+                      Redeem gift card or promo code
                   </Account.Link_style>
-                  {RedeemInput ?
-                    <Account.Input
-                      defaultValue=''
-                      onChange={(e) => {
-                        setchangeRedeem(e.target.value);
-                      }}
-                      onBlur={(e) => {
-                        setRedeemInput(false);
-                      }}
-                    ></Account.Input>
-                    : ''}
-                </Account.Row>
-                
-                <Account.Row>
-                  <Account.Link_style>
-                    Where to buy gift cards
+                    {RedeemInput ?
+                      <Account.Input
+                        defaultValue=''
+                        onChange={(e) => {
+                          setchangeRedeem(e.target.value);
+                        }}
+                        onBlur={(e) => {
+                          setRedeemInput(false);
+                          alert(`Promo code: ${e.target.value} is generated`);
+                        }}
+                      ></Account.Input>
+                      : ''}
+                  </Account.Row>
+
+                  <Account.Row>
+                    <Account.Link_style>
+                      Where to buy gift cards
                   </Account.Link_style>
-                </Account.Row>
+                  </Account.Row>
 
-                
-                
-              </Account.Link>
 
-              
 
-                
+                </Account.Link>
+
+
+
+
 
               </Account.InnerContainer>
             </Account.Info_Details>
