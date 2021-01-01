@@ -22,11 +22,11 @@ export default function SignIn() {
     event.preventDefault()
 
     axios
-      .post('http://localhost:3100/api/users/login', { email, password })
+      .post('http://localhost:8080/api/auth/signin', { email, password })
       .then((result) => {
-        if (result.data.token) {
-          console.log(result.data.token)
-          localStorage.setItem('jwtToken', result.data.token)
+        if (result.data.accessToken) {
+          console.log(result.data.accessToken)
+          localStorage.setItem('jwtToken', result.data.accessToken)
           history.push(ROUTES.BROWSE)
         }
       })

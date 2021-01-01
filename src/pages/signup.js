@@ -14,7 +14,7 @@ export default function SignUp() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [password2, setPassword2] = useState('')
+  //const [password2, setPassword2] = useState('')
   const [error, setError] = useState('')
 
   const isInvalid = name === '' || password === '' || email === ''
@@ -24,11 +24,10 @@ export default function SignUp() {
 
     //MongoDb Save
     axios
-      .post(' http://localhost:3100/api/users/register', {
+      .post('http://localhost:8080/api/auth/signup', {
         name,
         email,
         password,
-        password2,
       })
       .then((result) => {
         console.log('User Saved')
@@ -84,13 +83,13 @@ export default function SignUp() {
               placeholder="Password"
               onChange={({ target }) => setPassword(target.value)}
             />
-            <Form.Input
+            {/* <Form.Input
               type="password"
               value={password2}
               autoComplete="off"
               placeholder="Check Password"
               onChange={({ target }) => setPassword2(target.value)}
-            />
+            /> */}
             <Form.Submit
               disabled={isInvalid}
               type="submit"
