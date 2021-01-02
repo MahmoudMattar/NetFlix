@@ -24,8 +24,8 @@ export default function Plans() {
     price:120,
     name:"Netflix Subscription"
   });
-  const user  = useAuthListener();
-  var userUid = firebase.auth().currentUser.uid;
+  const user  = useAuthListener().user;
+  var userUid = user.uid;
   console.log(userUid)
 
   async function getUser(){
@@ -52,11 +52,11 @@ export default function Plans() {
       custId = response.data.customerinfo.id;
       let chargeId = response.data.chargeinfo.id;
       toast('Thanks for your subscription',{type:"success"}); 
-      var db = firebase.firestore();
-        db.collection('stripe').doc(userUid).set(
-            {StripeId:custId,
-            subscriptionId : chargeId}
-        ).catch(err=>console.log(err.message));
+       var db = firebase.firestore();
+         db.collection('stripe').doc(userUid).set(
+             {StripeId:custId,
+             subscriptionId : chargeId}
+         ).catch(err=>console.log(err.message));
       
       history.push(ROUTES.BROWSE);
       
