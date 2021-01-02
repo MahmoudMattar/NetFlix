@@ -8,8 +8,14 @@ import * as ROUTES from '../constants/routes';
 import { Button } from './../components/plan/styles/plan';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAuthListener } from '../hooks/';
+
 const stripe = require("stripe")("sk_test_51I2KqVDroAwyxUrvjNzUqyzm71UY0pyKqnIov2Xfox1TXz2EZUHkACIHPQMfc9RbrYkfRXke4jUF6uHMzeoRCLSU00FYHvx6Lm");
 
+
+toast.configure();
 
 export default function Plans() {
   const history = useHistory();
@@ -18,33 +24,55 @@ export default function Plans() {
     price:120,
     name:"Netflix Subscription"
   });
+  const user  = useAuthListener();
+  var userUid = firebase.auth().currentUser.uid;
+  console.log(userUid)
 
+  async function getUser(){
+    const requested = await axios.get(
+      "https://8xxlk.sse.codesandbox.io/checkout/ch_1I2kuaDroAwyxUrve7q3W42z"
+    );
+    console.log(requested);
+  }
+
+  let custId;
+  async function updateToken(token) {
+    const response = await axios.post(
+    "https://8xxlk.sse.codesandbox.io/customer/cus_IfYvL72DaRYuJc",
+    { token })
+  }
   async function handleToken(token, addresses) {
-    console.log(token);
     const response = await axios.post(
       "https://8xxlk.sse.codesandbox.io/checkout",
       { token, product }
-    );
-    const { status } = response.data;
+    ).catch(err=>toast('There was an error please try again',{type:"error"}));
+    
     console.log("Response:", response.data);
     if(response.data.status == "success"){
-      alert("Thanks for subscription");
+      custId = response.data.customerinfo.id;
+      let chargeId = response.data.chargeinfo.id;
+      toast('Thanks for your subscription',{type:"success"}); 
+      var db = firebase.firestore();
+        db.collection('stripe').doc(userUid).set(
+            {StripeId:custId,
+            subscriptionId : chargeId}
+        ).catch(err=>console.log(err.message));
+      
       history.push(ROUTES.BROWSE);
+      
     }else{
-      alert("Please try again!");
-
+      toast('There was an error please try again',{type:"error"}); 
     }
     }
   function valueOne(event){
     console.log(event)
     return product.price;
   }
-
   
   return (
     <>
       <HeaderContainer>
-        <Plan>
+        <Plan  >
           <Plan.Title>
             Choose the plan that’s right for you Change or cancel whenever you
             want.
@@ -189,6 +217,8 @@ export default function Plans() {
           name={product.name}
           amount={120*100}
           currency="EGP"
+          email={user.email}
+
 /> 
                   </td>
                   <td onClick={() => setProduct({price:200})}>
@@ -201,6 +231,7 @@ export default function Plans() {
           name={product.name}
           amount={165 * 100}
           currency="EGP"
+          email={user.email}
 />
                   </td>
                   <td>
@@ -213,6 +244,8 @@ export default function Plans() {
           name={product.name}
           amount={200 * 100}
           currency="EGP"
+          email={user.email}
+
           />
                   </td>
                 </tr>
