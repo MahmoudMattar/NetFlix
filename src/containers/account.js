@@ -5,12 +5,16 @@ import { Header, Account } from '../components';
 import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 import { FooterContainer } from '../containers/footer';
+// import StripeCheckout from 'react-stripe-checkout';
+// import axios from 'axios'
 // import firebase from "firebase/app";
 // import "firebase/database";
 
 import { Link } from 'react-router-dom';
-// import { FirebaseDatabaseProvider } from "@react-firebase/database";
-// import * as admin from 'firebase-admin';
+import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
+import { useAuthListener } from '../hooks/';
+
 
 
 
@@ -23,6 +27,10 @@ export function SelectAccountContainer({ children, user }) {
   const [changePhone, setchangePhone] = useState('');
   const [changePayment, setchangePayment] = useState('');
   const [changeRedeem, setchangeRedeem] = useState('');
+  const [StripeData, setStripeData] = useState('');
+  const [BillingDetails, setBilling] = useState('');
+  const [Last4, setLast4] = useState('');
+  const [stripeId, setstripeId] = useState('');
 
   const [EmailInput, setEmailInput] = useState(false);
   const [PasswordInput, setPasswordInput] = useState(false);
@@ -31,7 +39,65 @@ export function SelectAccountContainer({ children, user }) {
   const [RedeemInput, setRedeemInput] = useState(false);
 
   const { firebase } = useContext(FirebaseContext);
+  // user = firebase.auth().currentUser || {};
+
+  //payment visa card number
+  //user.uid && stripeId
+  // const stripeID =  db.collection('stripe').doc(Currentuser.uid).get()
+  //      .then(function(doc) {​​​​​
+  //        if (doc.exists) {​​​​​
+  //             console.log("Document data:", doc.data());
+  //             StripeData = doc.data().StripeId;
+  //             // return flag = true;
+  //        }​​​​​ else {​​​​​
+  //            // doc.data() will be undefined in this case
+  //            console.log("No such document!");
+  //        }​​​​​
+  //    }​​​​​).catch(function(error) {​​​​​
+  //        console.log("Error getting document:", error);
+  //    }​​​​​);
+
+  
+  // const { firebase } = useContext(FirebaseContext);
   user = firebase.auth().currentUser || {};
+  const stripeUser  = useAuthListener().user;
+  var userUid = stripeUser.uid;
+  const db = firebase.firestore();
+
+  async function updateToken(token) {
+    const response = await axios.post(
+    `https://8xxlk.sse.codesandbox.io/customer/${stripeId}`,
+    { token })
+  }
+  
+  const stripeID =  db.collection('stripe').doc(userUid).get()
+    .then(function(doc) {
+      if (doc.exists) {
+           console.log("Document data:", doc.data());
+           setstripeId (doc.data().StripeId);
+           return setStripeData(doc.data().subscriptionId);
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+  }).catch(function(error) {
+      console.log("Error getting document:", error);
+  });
+  console.log(StripeData);
+  
+ 
+
+  async function getUser(){
+    const requested = await axios.get(
+      `https://8xxlk.sse.codesandbox.io/checkout/${StripeData}`
+    );
+    console.log(requested.data.source);
+    setLast4(requested.data.source.last4)
+    // setBilling(requested.data.billing_details);
+  }
+  getUser();
+
+  //update visa card number => 16 num 
 
   useEffect(() => {
     // console.log(user.photoURL)
@@ -74,12 +140,29 @@ export function SelectAccountContainer({ children, user }) {
 
   });
 
+//  async function updateToken(token){​​​​​    
+//   const response = await axios.post( 
+//      "https://8xxlk.sse.codesandbox.io/customer/cus_IfYvL72DaRYuJc",{​​​​​ token }​​​​​)}​​​​​
+
+
   
+
+  // useEffect(() => {
+
+  //   async function updateToken(token){
+  //     const response = await axios.post( 
+  //          "https://8xxlk.sse.codesandbox.io/customer/cus_IfYvL72DaRYuJc",​​​​ token ​​​​​)
+  //   }
+
+  // });
+
+
   useEffect(() => {
 
     console.log(changePhone);
 
   }, [changePhone]);
+  
 
   useEffect(() => {
 
@@ -206,7 +289,9 @@ export function SelectAccountContainer({ children, user }) {
                 <Account.SubContainer>
 
                   <Account.Row>
-                    {PaymentInput ?
+                  <i className={`fab fa-cc-visa  ${Account.VisaIcon}`}></i>
+                  { ` **** **** **** ${Last4}`}
+                    {/* {PaymentInput ?
                       <Account.Input
                         defaultValue={user.Payment}
                         onChange={(e) => {
@@ -216,15 +301,24 @@ export function SelectAccountContainer({ children, user }) {
                           setPaymentInput(false);
                         }}
                       ></Account.Input> : <div><i className={`fab fa-cc-visa  ${Account.VisaIcon}`}></i>
-                        {changePayment !== '' ? `  ${changePayment}` : ` 1234 1234 1234 1234`}
-                      </div>}
+                        {changePayment !== '' ? `  ${changePayment}` : ` **** **** **** 1234`}
+                      </div>} */
+                      }
+                      
                   </Account.Row>
 
                   <Account.Link>
                     <Account.Row>
                       <Account.Link_style onClick={() => setPaymentInput(true)}>
-                        Update Payment info
+                      <StripeCheckout 
+                          stripeKey="pk_test_51I2KqVDroAwyxUrvfv1kGqUC7rXjKA13OjpO6Gos7rNEb4I3Y0ABch6g60NIxC9ahkJc53MvUTOlmTwryd0WflL000SMwfaNwh"
+                          token={updateToken}
+                          name="Update Visa"
+                          currency="EGP"
+                          email={user.email}
+                          label="Update Card"  />
                         </Account.Link_style>
+                        
                     </Account.Row>
                     <Account.Row>
                       <Account.Link_style>Billing details</Account.Link_style>
