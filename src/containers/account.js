@@ -68,6 +68,7 @@ export function SelectAccountContainer({ children, user }) {
     const response = await axios.post(
     `https://8xxlk.sse.codesandbox.io/customer/${stripeId}`,
     { token })
+    window.location.reload();
   }
   
   const stripeID =  db.collection('stripe').doc(userUid).get()
@@ -89,10 +90,10 @@ export function SelectAccountContainer({ children, user }) {
 
   async function getUser(){
     const requested = await axios.get(
-      `https://8xxlk.sse.codesandbox.io/checkout/${StripeData}`
+      `https://8xxlk.sse.codesandbox.io/customer/${stripeId}`
     );
     console.log(requested.data.source);
-    setLast4(requested.data.source.last4)
+    setLast4(requested.data.default_source.last4)
     // setBilling(requested.data.billing_details);
   }
   getUser();
@@ -316,7 +317,8 @@ export function SelectAccountContainer({ children, user }) {
                           name="Update Visa"
                           currency="EGP"
                           email={user.email}
-                          label="Update Card"  />
+                          label="Update Card"
+                          panelLabel="Update"  />
                         </Account.Link_style>
                         
                     </Account.Row>
