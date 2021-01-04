@@ -1,5 +1,5 @@
-import React from 'react';
-import { Footer } from '../components';
+import React from 'react'
+import { Footer } from '../components'
 
 export function FooterContainer() {
   return (
@@ -8,6 +8,7 @@ export function FooterContainer() {
       <Footer.Break />
       <Footer.Row>
         <Footer.Column>
+
           <Footer.Link href="/faq">FAQ</Footer.Link>
           <Footer.Link href="https://ir.netflix.net/ir-overview/profile/default.aspx">
             Investor Relations
@@ -40,10 +41,11 @@ export function FooterContainer() {
           </Footer.Link>
           <Footer.Link href="/terms">Terms of Use</Footer.Link>
           <Footer.Link href="/contact">Contact Us</Footer.Link>
+
         </Footer.Column>
       </Footer.Row>
       <Footer.Break />
       <Footer.Text>Netflix Egypt</Footer.Text>
     </Footer>
-  );
+  )
 }

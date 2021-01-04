@@ -1,9 +1,7 @@
 import Firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
-//production version [prod]
-// 1) when seeding the database you'll have to uncomment this!
-// import { seedDatabase } from '../seed';
+import { seedDatabase } from '../seed'
 
 const config = {
   apiKey: 'AIzaSyAR4XcUDz8e6VgyOjrzuWL_A1NKfuHA6eU',
@@ -14,10 +12,8 @@ const config = {
   messagingSenderId: '210400097325',
   appId: '1:210400097325:web:162cf88cb074af5411b4a4',
 }
-
 const firebase = Firebase.initializeApp(config)
-// 2) when seeding the database you'll have to uncomment this!
-// seedDatabase(firebase);
-// 3) once you have populated the database (only run once!), re-comment this so you don't get duplicate data
 
+//just call one time for intialize the data
+//seedDatabase(firebase);
 export { firebase }
