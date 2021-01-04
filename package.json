@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
+    "bootstrap": "^4.5.3",
     "firebase": "^7.19.1",
     "fuse.js": "^6.4.1",
     "normalize.css": "^8.0.1",
@@ -14,7 +17,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "3.4.0",
     "react-stripe-checkout": "^2.6.3",
     "styled-components": "^5.1.1"
   },

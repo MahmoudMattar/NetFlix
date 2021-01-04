@@ -1,5 +1,20 @@
-export const HOME = '/'
-export const BROWSE = '/browse'
-export const SIGN_UP = '/signup'
-export const SIGN_IN = '/signin'
-export const PLANS = '/plans'
+
+export const HOME = '/';
+export const BROWSE = '/browse';
+export const SIGN_UP = '/signup';
+export const SIGN_IN = '/signin';
+export const ACCOUNT = '/account';
+export const CONTACT_US = '/contact';
+export const FAQ = '/faq';
+export const INVESTOR = '/investor_Relations';
+export const WAYS = '/ways';
+export const CORPORATE_INFO = '/corporateInfo';
+export const NETFLIX_ORIGINAL = '/netflix_original';
+export const HELP = '/help';
+export const JOBS = '/jobs';
+export const TERMS = '/terms';
+export const PRIVACY = '/privacy';
+export const MEDIA = '/Media';
+export const PLANS = '/plans';
+export const COOKIE = '/cookie';
+export const LEGAL = '/legal';

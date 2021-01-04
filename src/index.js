@@ -14,4 +14,4 @@ render(
     </FirebaseContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
-)
+);
