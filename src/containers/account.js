@@ -141,21 +141,6 @@ export function SelectAccountContainer({ children, user }) {
 
   });
 
-//  async function updateToken(token){​​​​​    
-//   const response = await axios.post( 
-//      "https://8xxlk.sse.codesandbox.io/customer/cus_IfYvL72DaRYuJc",{​​​​​ token }​​​​​)}​​​​​
-
-
-  
-
-  // useEffect(() => {
-
-  //   async function updateToken(token){
-  //     const response = await axios.post( 
-  //          "https://8xxlk.sse.codesandbox.io/customer/cus_IfYvL72DaRYuJc",​​​​ token ​​​​​)
-  //   }
-
-  // });
 
 
   useEffect(() => {
