@@ -34,7 +34,7 @@ export default function SignUp() {
         history.push(ROUTES.SIGN_IN)
       })
       .catch((error) => {
-        console.log(error.response.data.message)
+        console.log(error)
       })
 
     return firebase
