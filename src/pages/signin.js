@@ -1,48 +1,32 @@
 import React, { useState, useContext } from 'react'
-import { Redirect, Route, useHistory } from 'react-router-dom' //push to different pages
+import { useHistory } from 'react-router-dom'
 import { FirebaseContext } from '../context/firebase'
+import { Form } from '../components'
 import { HeaderContainer } from '../containers/header'
 import { FooterContainer } from '../containers/footer'
-import { Form } from '../components'
 import * as ROUTES from '../constants/routes'
-import axios from 'axios'
 
 export default function SignIn() {
   const history = useHistory()
   const { firebase } = useContext(FirebaseContext)
-  const [email, setEmail] = useState('')
+
+  const [emailAddress, setEmailAddress] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  //check form input ele are valid
-  const isInvalid = password === '' || email === ''
-  //email && password
+  const isInvalid = password === '' || emailAddress === ''
 
   const handleSignin = (event) => {
     event.preventDefault()
 
-    axios
-      .post('http://localhost:8080/api/auth/signin', { email, password })
-      .then((result) => {
-        if (result.data.accessToken) {
-          console.log(result.data.accessToken)
-          localStorage.setItem('jwtToken', result.data.accessToken)
-          history.push(ROUTES.BROWSE)
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-
-    //FirBase Business
     return firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(emailAddress, password)
       .then(() => {
         history.push(ROUTES.BROWSE)
       })
       .catch((error) => {
-        setEmail('')
+        setEmailAddress('')
         setPassword('')
         setError(error.message)
       })
@@ -58,8 +42,8 @@ export default function SignIn() {
           <Form.Base onSubmit={handleSignin} method="POST">
             <Form.Input
               placeholder="Email address"
-              value={email}
-              onChange={({ target }) => setEmail(target.value)}
+              value={emailAddress}
+              onChange={({ target }) => setEmailAddress(target.value)}
             />
             <Form.Input
               type="password"
@@ -82,11 +66,10 @@ export default function SignIn() {
           </Form.Text>
           <Form.TextSmall>
             This page is protected by Google reCAPTCHA to ensure you're not a
-            bot.Learn more.
+            bot. Learn more.
           </Form.TextSmall>
         </Form>
       </HeaderContainer>
-
       <FooterContainer />
     </>
   )

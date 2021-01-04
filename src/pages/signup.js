@@ -1,23 +1,20 @@
 import React, { useState, useContext } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 import { FirebaseContext } from '../context/firebase'
 import { Form } from '../components'
 import { HeaderContainer } from '../containers/header'
 import { FooterContainer } from '../containers/footer'
 import * as ROUTES from '../constants/routes'
-import axios from 'axios'
-
 export default function SignUp() {
   const history = useHistory()
   const { firebase } = useContext(FirebaseContext)
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [emailAddress, setEmailAddress] = useState('')
   const [password, setPassword] = useState('')
-  //const [password2, setPassword2] = useState('')
   const [error, setError] = useState('')
 
-  const isInvalid = name === '' || password === '' || email === ''
+  const isInvalid = firstName === '' || password === '' || emailAddress === ''
 
   const handleSignup = (event) => {
     event.preventDefault()
@@ -39,20 +36,20 @@ export default function SignUp() {
 
     return firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(emailAddress, password)
       .then((result) =>
         result.user
           .updateProfile({
-            displayName: name,
+            displayName: firstName,
             photoURL: Math.floor(Math.random() * 5) + 1,
           })
           .then(() => {
-            history.push(ROUTES.BROWSE)
+            history.push(ROUTES.PLANS)
           })
       )
       .catch((error) => {
-        setName('')
-        setEmail('')
+        setFirstName('')
+        setEmailAddress('')
         setPassword('')
         setError(error.message)
       })
@@ -68,13 +65,13 @@ export default function SignUp() {
           <Form.Base onSubmit={handleSignup} method="POST">
             <Form.Input
               placeholder="First name"
-              value={name}
-              onChange={({ target }) => setName(target.value)}
+              value={firstName}
+              onChange={({ target }) => setFirstName(target.value)}
             />
             <Form.Input
               placeholder="Email address"
-              value={email}
-              onChange={({ target }) => setEmail(target.value)}
+              value={emailAddress}
+              onChange={({ target }) => setEmailAddress(target.value)}
             />
             <Form.Input
               type="password"
@@ -83,17 +80,11 @@ export default function SignUp() {
               placeholder="Password"
               onChange={({ target }) => setPassword(target.value)}
             />
-            {/* <Form.Input
-              type="password"
-              value={password2}
-              autoComplete="off"
-              placeholder="Check Password"
-              onChange={({ target }) => setPassword2(target.value)}
-            /> */}
             <Form.Submit
               disabled={isInvalid}
               type="submit"
               data-testid="sign-up"
+              to="/plans"
             >
               Sign Up
             </Form.Submit>
