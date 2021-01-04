@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import Fuse from 'fuse.js'
-import { Card, Header, Loading, Player, Account } from '../components'
+import { Card, Header, Loading, Player } from '../components'
 import * as ROUTES from '../constants/routes'
 import logo from '../logo.svg'
 import { FirebaseContext } from '../context/firebase'
 import { SelectProfileContainer } from './profiles'
 import { FooterContainer } from './footer'
-import { Link } from 'react-router-dom'
 
 export function BrowseContainer({ slides }) {
   const [category, setCategory] = useState('series')
@@ -72,24 +71,7 @@ export function BrowseContainer({ slides }) {
               <Header.Dropdown>
                 <Header.Group>
                   <Header.Picture src={user.photoURL} />
-                  <Header.TextLink to={ROUTES.ACCOUNT}>
-                    <Link
-                      style={{ color: 'white', textDecoration: 'none' }}
-                      to={ROUTES.ACCOUNT}
-                    >
-                      {user.displayName}
-                    </Link>
-                  </Header.TextLink>
-                </Header.Group>
-                <Header.Group>
-                  <Header.TextLink to={ROUTES.ACCOUNT}>
-                    <Link
-                      style={{ color: 'white', textDecoration: 'none' }}
-                      to={ROUTES.ACCOUNT}
-                    >
-                      Settings
-                    </Link>
-                  </Header.TextLink>
+                  <Header.TextLink>{user.displayName}</Header.TextLink>
                 </Header.Group>
                 <Header.Group>
                   <Header.TextLink onClick={() => firebase.auth().signOut()}>

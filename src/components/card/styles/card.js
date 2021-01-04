@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components/macro'
 
 export const Title = styled.p`
   font-size: 24px;
@@ -7,12 +7,13 @@ export const Title = styled.p`
   margin-left: 56px;
   margin-right: 56px;
   margin-top: 0;
-`;
+`
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
+  box-sizing: border-box;
 
   > ${Title} {
     @media (max-width: 1000px) {
@@ -23,7 +24,7 @@ export const Container = styled.div`
   &:last-of-type {
     margin-bottom: 0;
   }
-`;
+`
 
 export const Group = styled.div`
   display: flex;
@@ -34,10 +35,10 @@ export const Group = styled.div`
 
   > ${Container}:first-of-type {
     @media (min-width: 1100px) {
-      margin-top: -100px;
+      margin-top: -150px;
     }
   }
-`;
+`
 
 export const SubTitle = styled.p`
   font-size: 12px;
@@ -47,7 +48,7 @@ export const SubTitle = styled.p`
   margin-bottom: 0;
   user-select: none;
   display: none;
-`;
+`
 
 export const Text = styled.p`
   margin-top: 5px;
@@ -57,12 +58,12 @@ export const Text = styled.p`
   user-select: none;
   display: none;
   line-height: normal;
-`;
+`
 
 export const Entities = styled.div`
   display: flex;
   flex-direction: row;
-`;
+`
 
 export const Meta = styled.div`
   display: none;
@@ -70,16 +71,17 @@ export const Meta = styled.div`
   bottom: 0;
   padding: 10px;
   background-color: #0000008f;
-`;
+`
 
 export const Image = styled.img`
   border: 0;
+  width: 100%;
   max-width: 305px;
   cursor: pointer;
   height: auto;
   padding: 0;
   margin: 0;
-`;
+`
 
 export const Item = styled.div`
   display: flex;
@@ -116,7 +118,7 @@ export const Item = styled.div`
       margin-right: 30px;
     }
   }
-`;
+`
 
 export const FeatureText = styled.p`
   font-size: 18px;
@@ -128,7 +130,7 @@ export const FeatureText = styled.p`
   @media (max-width: 600px) {
     line-height: 22px;
   }
-`;
+`
 
 export const Feature = styled.div`
   display: flex;
@@ -154,11 +156,11 @@ export const Feature = styled.div`
       font-size: 14px;
     }
   }
-`;
+`
 
 export const FeatureTitle = styled(Title)`
   margin-left: 0;
-`;
+`
 
 export const FeatureClose = styled.button`
   color: white;
@@ -173,7 +175,7 @@ export const FeatureClose = styled.button`
     filter: brightness(0) invert(1);
     width: 24px;
   }
-`;
+`
 
 export const Content = styled.div`
   margin: 56px;
@@ -184,17 +186,17 @@ export const Content = styled.div`
     margin: 30px;
     max-width: none;
   }
-`;
+`
 
 export const Maturity = styled.div`
-  background-color: ${({ rating }) => (rating >= 15 ? '#f44336' : '#2f9600')};
+  background-color: ${({ rating }) => (rating >= 15 ? 'red' : 'green')};
   border-radius: 15px;
-  width: 28px;
-  line-height: 28px;
+  width: 20px;
+  padding: 5px;
   text-align: center;
   color: white;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   margin-right: 10px;
   font-size: 12px;
-`;
+`
