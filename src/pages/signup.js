@@ -34,7 +34,7 @@ export default function SignUp() {
         history.push(ROUTES.SIGN_IN)
       })
       .catch((error) => {
-        console.log(error.response.data.message)
+        console.log(error)
       })
 
     return firebase
@@ -47,7 +47,7 @@ export default function SignUp() {
             photoURL: Math.floor(Math.random() * 5) + 1,
           })
           .then(() => {
-            history.push(ROUTES.BROWSE)
+            history.push(ROUTES.PLANS)
           })
       )
       .catch((error) => {

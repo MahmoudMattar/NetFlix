@@ -7,10 +7,13 @@ import { Plan } from '../components'
 import * as ROUTES from '../constants/routes'
 import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAuthListener } from '../hooks/';
 // const stripe = require('stripe')(
 //   'sk_test_51I2KqVDroAwyxUrvjNzUqyzm71UY0pyKqnIov2Xfox1TXz2EZUHkACIHPQMfc9RbrYkfRXke4jUF6uHMzeoRCLSU00FYHvx6Lm'
 // )
+toast.configure();
 
 export default function Plans() {
   const history = useHistory()
@@ -19,22 +22,34 @@ export default function Plans() {
     price: 120,
     name: 'Netflix Subscription',
   })
+  const user  = useAuthListener().user;
+  var userUid = user.uid;
+  console.log(userUid)
+  let custId;
 
   async function handleToken(token, addresses) {
-    console.log(token)
     const response = await axios.post(
-      'https://8xxlk.sse.codesandbox.io/checkout',
+      "https://8xxlk.sse.codesandbox.io/checkout",
       { token, product }
-    )
-    const { status } = response.data
-    console.log('Response:', response.data)
-    if (response.data.status == 'success') {
-      alert('Thanks for subscription')
-      history.push(ROUTES.BROWSE)
-    } else {
-      alert('Please try again!')
+    ).catch(err=>toast('There was an error please try again',{type:"error"}));
+    
+    console.log("Response:", response.data);
+    if(response.data.status == "success"){
+      custId = response.data.customerinfo.id;
+      let chargeId = response.data.chargeinfo.id;
+      toast('Thanks for your subscription',{type:"success"}); 
+       var db = firebase.firestore();
+         db.collection('stripe').doc(userUid).set(
+             {StripeId:custId,
+             subscriptionId : chargeId}
+         ).catch(err=>console.log(err.message));
+      
+      history.push(ROUTES.BROWSE);
+      
+    }else{
+      toast('There was an error please try again',{type:"error"}); 
     }
-  }
+    }
   function valueOne(event) {
     console.log(event)
     return product.price
@@ -188,6 +203,8 @@ export default function Plans() {
                       name={product.name}
                       amount={120 * 100}
                       currency="EGP"
+                      email={user.email}
+
                     />
                   </td>
                   <td onClick={() => setProduct({ price: 200 })}>
@@ -200,6 +217,8 @@ export default function Plans() {
                       name={product.name}
                       amount={165 * 100}
                       currency="EGP"
+                      email={user.email}
+
                     />
                   </td>
                   <td>
@@ -212,6 +231,8 @@ export default function Plans() {
                       name={product.name}
                       amount={200 * 100}
                       currency="EGP"
+                      email={user.email}
+
                     />
                   </td>
                 </tr>

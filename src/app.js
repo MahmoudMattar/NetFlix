@@ -16,18 +16,33 @@ export default function App() {
         </ProtectedRoute>
         <IsUserRedirect
           user={user}
+          loggedInPath={ROUTES.PLANS}
+          path={ROUTES.SIGN_UP}
+        >
+          <SignUp />
+        </IsUserRedirect>
+        <IsUserRedirect
+          user={user}
+          loggedInPath={ROUTES.BROWSE}
+          path={ROUTES.PLANS}
+        >
+          <Plans />
+        </IsUserRedirect>
+        <IsUserRedirect
+          user={user}
           loggedInPath={ROUTES.BROWSE}
           path={ROUTES.SIGN_IN}
         >
           <SignIn />
         </IsUserRedirect>
-        <IsUserRedirect
+        
+        {/* <IsUserRedirect
           user={user}
           loggedInPath={ROUTES.BROWSE}
           path={ROUTES.SIGN_UP}
         >
           <SignUp />
-        </IsUserRedirect>
+        </IsUserRedirect> */}
         <IsUserRedirect loggedInPath={ROUTES.ACCOUNT} path={ROUTES.ACCOUNT}>
           <Account />
         </IsUserRedirect>
