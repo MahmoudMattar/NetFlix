@@ -10,4 +10,4 @@ export { default as Original } from './original';
 export { default as Terms } from './terms';
 export { default as Privacy } from './privacy';
 export { default as Legal } from './legal';
-
+export { default as Plans } from './plans'

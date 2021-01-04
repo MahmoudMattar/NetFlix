@@ -200,7 +200,10 @@ export const FeatureCallOut = styled.h2`
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
   margin: 0;
+<<<<<<< HEAD
   margin-bottom: 20px;
+=======
+>>>>>>> master
 `;
 
 export const Text = styled.p`
@@ -210,6 +213,7 @@ export const Text = styled.p`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
 `;
 
+<<<<<<< HEAD
 export const Account = styled.a`
   color: white;
   font-size: 22px;
@@ -217,6 +221,8 @@ export const Account = styled.a`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
 `;
 
+=======
+>>>>>>> master
 export const Logo = styled.img`
   height: 36px;
   width: 134px;
