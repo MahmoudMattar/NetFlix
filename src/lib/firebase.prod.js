@@ -1,7 +1,7 @@
-import Firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
-import { seedDatabase } from '../seed';
+import Firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
+import { seedDatabase } from '../seed'
 
 const config = {
   apiKey: 'AIzaSyAR4XcUDz8e6VgyOjrzuWL_A1NKfuHA6eU',
@@ -11,9 +11,9 @@ const config = {
   storageBucket: 'netflix-baff3.appspot.com',
   messagingSenderId: '210400097325',
   appId: '1:210400097325:web:162cf88cb074af5411b4a4',
-};
-const firebase = Firebase.initializeApp(config);
+}
+const firebase = Firebase.initializeApp(config)
 
 //just call one time for intialize the data
 //seedDatabase(firebase);
-export { firebase };
+export { firebase }

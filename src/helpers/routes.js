@@ -1,6 +1,6 @@
-import React , {useContext} from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { FirebaseContext } from '../context/firebase';
+import React, { useContext } from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import { FirebaseContext } from '../context/firebase'
 
 export function IsUserRedirect({ user, loggedInPath, children, ...rest }) {
   return (
@@ -8,7 +8,7 @@ export function IsUserRedirect({ user, loggedInPath, children, ...rest }) {
       {...rest}
       render={() => {
         if (!user) {
-          return children;
+          return children
         }
 
         if (user) {
@@ -18,13 +18,13 @@ export function IsUserRedirect({ user, loggedInPath, children, ...rest }) {
                 pathname: loggedInPath,
               }}
             />
-          );
+          )
         }
 
-        return null;
+        return null
       }}
     />
-  );
+  )
 }
 
 export function ProtectedRoute({ user, children, ...rest }) {
@@ -33,10 +33,10 @@ export function ProtectedRoute({ user, children, ...rest }) {
       {...rest}
       render={({ location }) => {
         if (user) {
-          return children;
+          return children
         }
 
-        if (!user ) {
+        if (!user) {
           return (
             <Redirect
               to={{
@@ -44,18 +44,17 @@ export function ProtectedRoute({ user, children, ...rest }) {
                 state: { from: location },
               }}
             />
-          );
+          )
         }
 
-        return null;
+        return null
       }}
     />
-  );
+  )
 }
 
-
 //  export function ProtectedStripe({  children, ...rest }) {
-   
+
 //   const {firebase} =useContext(FirebaseContext);
 //    const user = firebase.auth().currentUser  ;
 //    console.log(user)
@@ -73,7 +72,7 @@ export function ProtectedRoute({ user, children, ...rest }) {
 //     }).catch(function(error) {
 //         console.log("Error getting document:", error);
 //     });
-  
+
 //    return (
 //     <Route
 //       {...rest}
@@ -81,7 +80,7 @@ export function ProtectedRoute({ user, children, ...rest }) {
 //         if (user && StripeData) {
 //           return children;
 //         }
-        
+
 //         if (!user) {
 //           return (
 //             <Redirect

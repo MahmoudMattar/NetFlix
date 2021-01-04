@@ -1,16 +1,18 @@
-import styled from 'styled-components/macro';
-import { Link as ReachRouterLink } from 'react-router-dom';
+import styled from 'styled-components/macro'
+import { Link as ReachRouterLink } from 'react-router-dom'
 
 export const Background = styled.div`
   display: flex;
   flex-direction: column;
-  background: url(${({ src }) => (src ? `../images/misc/${src}.jpg` : '../images/misc/home-bg.jpg')}) top left / cover
-    no-repeat;
+  background: url(${({ src }) =>
+      src ? `../images/misc/${src}.jpg` : '../images/misc/home-bg.jpg'})
+    top left / cover no-repeat;
 
   @media (max-width: 1100px) {
-    ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && `background: none;`}
+    ${({ dontShowOnSmallViewPort }) =>
+      dontShowOnSmallViewPort && `background: none;`}
   }
-`;
+`
 
 export const Container = styled.div`
   display: flex;
@@ -27,7 +29,7 @@ export const Container = styled.div`
   @media (max-width: 1000px) {
     margin: 0 30px;
   }
-`;
+`
 
 export const Link = styled.p`
   color: #fff;
@@ -43,12 +45,12 @@ export const Link = styled.p`
   &:last-of-type {
     margin-right: 0;
   }
-`;
+`
 
 export const Group = styled.div`
   display: flex;
   align-items: center;
-`;
+`
 
 export const SearchInput = styled.input`
   background-color: #44444459;
@@ -61,7 +63,7 @@ export const SearchInput = styled.input`
   padding: ${({ active }) => (active === true ? '0 10px' : '0')};
   opacity: ${({ active }) => (active === true ? '1' : '0')};
   width: ${({ active }) => (active === true ? '200px' : '0px')};
-`;
+`
 
 export const Search = styled.div`
   display: flex;
@@ -75,7 +77,7 @@ export const Search = styled.div`
   @media (max-width: 700px) {
     display: none;
   }
-`;
+`
 
 export const SearchIcon = styled.button`
   cursor: pointer;
@@ -86,7 +88,7 @@ export const SearchIcon = styled.button`
     filter: brightness(0) invert(1);
     width: 16px;
   }
-`;
+`
 
 export const ButtonLink = styled(ReachRouterLink)`
   display: block;
@@ -105,7 +107,7 @@ export const ButtonLink = styled(ReachRouterLink)`
   &:hover {
     background: #f40612;
   }
-`;
+`
 
 export const Picture = styled.button`
   background: url(${({ src }) => src});
@@ -114,7 +116,7 @@ export const Picture = styled.button`
   width: 32px;
   height: 32px;
   cursor: pointer;
-`;
+`
 
 export const Dropdown = styled.div`
   display: none;
@@ -150,7 +152,7 @@ export const Dropdown = styled.div`
     margin-bottom: 0;
     margin-top: 0;
   }
-`;
+`
 
 export const Profile = styled.div`
   display: flex;
@@ -166,7 +168,7 @@ export const Profile = styled.div`
     display: flex;
     flex-direction: column;
   }
-`;
+`
 
 export const Feature = styled(Container)`
   padding: 150px 0 500px 0;
@@ -177,7 +179,7 @@ export const Feature = styled(Container)`
   @media (max-width: 1100px) {
     display: none;
   }
-`;
+`
 
 export const FeatureCallOut = styled.h2`
   color: white;
@@ -186,14 +188,14 @@ export const FeatureCallOut = styled.h2`
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
   margin: 0;
-`;
+`
 
 export const Text = styled.p`
   color: white;
   font-size: 22px;
   line-height: normal;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
-`;
+`
 
 export const Logo = styled.img`
   height: 32px;
@@ -204,7 +206,7 @@ export const Logo = styled.img`
     height: 45px;
     width: 167px;
   }
-`;
+`
 
 export const PlayButton = styled.button`
   box-shadow: 0 0.6vw 1vw -0.4vw rgba(0, 0, 0, 0.35);
@@ -224,4 +226,4 @@ export const PlayButton = styled.button`
     background-color: #ff1e1e;
     color: white;
   }
-`;
+`
