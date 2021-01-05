@@ -11,6 +11,9 @@ export default function App() {
   return (
     <Router>
       <Switch>
+      <ProtectedRoute user={user} path={ROUTES.ACCOUNT}>
+          <Account />
+        </ProtectedRoute>
       <ProtectedRoute user={user} path={ROUTES.CONTACT_US}>
           <Contact />
         </ProtectedRoute>

@@ -27,7 +27,7 @@ import {
   Redeem,
 } from './styles/account'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-const FontAwesome = require('react-fontawesome')
+// const FontAwesome = require('react-fontawesome')
 
 
 export default function Account({ children, ...restProps }) {
@@ -124,9 +124,9 @@ Account.Main = function AccountMain({ children, ...restProps }) {
 Account.Container = function AccountContainer({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>
 }
-Account.VisaIcon = function AccountVisaIcon({ children, ...restProps }) {
-  return <FontAwesome {...restProps}>{children}</FontAwesome>
-}
+// Account.VisaIcon = function AccountVisaIcon({ children, ...restProps }) {
+//   return <FontAwesome {...restProps}>{children}</FontAwesome>
+// }
 
 Account.Redeem = function AccountRedeem({ children, ...restProps }) {
   return <Redeem {...restProps}>{children}</Redeem>
