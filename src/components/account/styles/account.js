@@ -95,7 +95,7 @@ export const Frame = styled.div`
 
 // `;
 
-// export const Name = styled.p`
+// export const Email = styled.p`
 //     color: #808080;
 //     // text-overflow: ellipsis;
 //     font-size: 16px;
@@ -177,6 +177,7 @@ export const Picture = styled.img`
   width: 48px;
   height: auto;
   object-fit: contain;
+
   @media (min-width: 478px) {
     width: 48px;
     height: 48px;
@@ -193,6 +194,7 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: auto;
   grid-gap: 5px;
+
   @media screen and (min-width: 478px) {
     max-width: 900px;
     margin: auto;
@@ -209,6 +211,7 @@ export const InnerContainer = styled.div`
   padding: 10px;
   border: 1px solid bababa;
   line-height: 2.65rem;
+
   @media (min-width: 478px) {
     background-color: #f3f3f3;
     border-top: 1px solid black;
@@ -225,6 +228,7 @@ export const InnerContainer = styled.div`
 export const Info_Details = styled.div`
     grid-template-rows: 1fr 1fr 1fr;
     display: grid;
+
     @media (min-width: 478px) {
         &div:not(:first-child) {
             border-top: 1px solid black;
@@ -250,6 +254,7 @@ export const CancelBtn = styled.button`
     border: 0;
     padding: 12px;
     margin: 0px 0px 20px 0px;
+
     width: 220px;
     font-weight: bold;
     display: inline-block;
@@ -263,7 +268,10 @@ export const SubContainer = styled.div`
   }
 `
 
-export const Name = styled.div`
+export const Email = styled.div`
+  font-weight: bold;
+`
+export const Input = styled.input`
   font-weight: bold;
 `
 
@@ -271,6 +279,7 @@ export const Row = styled.div`
   cursor: pointer;
   line-height: 3.65rem;
   position: relative;
+
   @media (min-width: 478px) {
     line-height: 2rem;
     padding: 2px;
@@ -281,11 +290,13 @@ export const Link_style = styled.div`
   :hover {
     text-decoration: underline;
   }
+
   ::before {
     display: block;
     content: '';
     border-top: 0.05rem solid #999999;
   }
+
   @media screen and (min-width: 478px) {
     ::before {
       display: none;
@@ -306,6 +317,7 @@ export const CancelBtnMobile = styled.button`
   font-size: 1rem;
   width: 100%;
   font-weight: bold;
+
   @media (min-width: 478px) {
     display: none;
   }
@@ -313,6 +325,10 @@ export const CancelBtnMobile = styled.button`
 
 export const VisaIcon = styled.div`
   font-size: 2rem;
+`
+
+export const Redeem = styled.span`
+  // font-size: 2rem;
 `
 
 // export const ArrowIcon = styled.i`
