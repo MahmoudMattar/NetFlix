@@ -56,8 +56,13 @@ export function SelectAccountContainer({ children, user }) {
 
   // const { firebase } = useContext(FirebaseContext);
   user = firebase.auth().currentUser || {}
-  const stripeUser = useAuthListener().user
-  const userUid = stripeUser.uid
+  let stripeUser = '';
+  let userUid = '';
+  if(user != null){
+    stripeUser = user
+    userUid = stripeUser.uid
+  }
+  
   const db = firebase.firestore()
 
   async function updateToken(token) {
@@ -67,8 +72,9 @@ export function SelectAccountContainer({ children, user }) {
     )
     window.location.reload()
   }
-
-  const stripeID = db
+  let stripeID ='';
+  if(userUid != null){
+   stripeID = db
     .collection('stripe')
     .doc(userUid)
     .get()
@@ -85,6 +91,7 @@ export function SelectAccountContainer({ children, user }) {
     .catch(function (error) {
       console.log('Error getting document:', error)
     })
+  }
   console.log(StripeData)
 
   async function getUser() {
