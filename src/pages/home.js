@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { createContext } from 'react'
 import { Feature, OptForm } from '../components'
 import { HeaderContainer } from '../containers/header'
 import { JumbotronContainer } from '../containers/jumbotron'
 import { FaqContainers } from '../containers/faqs'
 import { FooterContainer } from '../containers/footer'
-import { Link, useHistory } from 'react-router-dom'
 import * as ROUTES from '../constants/routes'
 import { useState } from 'react'
 
-export default function Home() {
-  let history = useHistory()
-
-  let [email, setEmail] = useState('email')
+export default function Home(props) {
+  let [email, setEmail] = useState('')
 
   function handelEmailChange(e) {
     setEmail(e.target.value)
+  }
+
+  function handelEmail(e) {
+    props.setUserEmail(email)
   }
   return (
     <>
@@ -32,7 +33,10 @@ export default function Home() {
               onChange={handelEmailChange}
             />
 
-            <OptForm.Button to={{ pathname: ROUTES.SIGN_UP }} userEmail={email}>
+            <OptForm.Button
+              to={{ pathname: ROUTES.SIGN_UP }}
+              onClick={handelEmail}
+            >
               Try it now
             </OptForm.Button>
 
