@@ -7,17 +7,18 @@ import { FooterContainer } from '../containers/footer'
 import * as ROUTES from '../constants/routes'
 import axios from 'axios'
 
-export default function SignUp() {
+export default function SignUp({ userEmail }) {
   const history = useHistory()
   const { firebase } = useContext(FirebaseContext)
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  //const [password2, setPassword2] = useState('')
   const [error, setError] = useState('')
 
   const isInvalid = name === '' || password === '' || email === ''
+
+  console.log(userEmail)
 
   const handleSignup = (event) => {
     event.preventDefault()
