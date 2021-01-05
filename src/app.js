@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
-import { Home, Browse, SignIn, SignUp, Account, Plans } from './pages'
+import { Home, Browse, SignIn, SignUp, Account, Plans,Terms, Privacy, Original, Legal,FAQ, Corporate, Contact } from './pages'
 import * as ROUTES from './constants/routes'
 import { IsUserRedirect, ProtectedRoute } from './helpers/routes'
 import { useAuthListener } from './hooks'
@@ -11,6 +11,27 @@ export default function App() {
   return (
     <Router>
       <Switch>
+      <ProtectedRoute user={user} path={ROUTES.CONTACT_US}>
+          <Contact />
+        </ProtectedRoute>
+      <ProtectedRoute user={user} path={ROUTES.CORPORATE_INFO}>
+          <Corporate />
+        </ProtectedRoute>
+      <ProtectedRoute user={user} path={ROUTES.FAQ}>
+          <FAQ />
+        </ProtectedRoute>
+      <ProtectedRoute user={user} path={ROUTES.LEGAL}>
+          <Legal />
+        </ProtectedRoute>
+      <ProtectedRoute user={user} path={ROUTES.NETFLIX_ORIGINAL}>
+          <Original />
+        </ProtectedRoute>
+      <ProtectedRoute user={user} path={ROUTES.PRIVACY}>
+          <Privacy />
+        </ProtectedRoute>
+      <ProtectedRoute user={user} path={ROUTES.TERMS}>
+          <Terms />
+        </ProtectedRoute>
         <ProtectedRoute user={user} path={ROUTES.PLANS}>
           <Plans />
         </ProtectedRoute>

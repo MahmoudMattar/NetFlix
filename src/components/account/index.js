@@ -3,13 +3,14 @@ import {
   Container,
   Title,
   Side_Title,
-  Name,
+  Email,
   Frame,
   SubContainer,
   Br,
   Background,
   TextLink,
   InnerContainer,
+  Input,
   Main,
   Info_Details,
   Link_style,
@@ -23,9 +24,11 @@ import {
   Row,
   Phone,
   VisaIcon,
+  Redeem,
 } from './styles/account'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+const FontAwesome = require('react-fontawesome')
 
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Account({ children, ...restProps }) {
   return <Account {...restProps}>{children}</Account>
@@ -71,8 +74,11 @@ Account.Picture = function AccountPicture({ src, ...restProps }) {
 Account.Side_Title = function AccountSide_Title({ children, ...restProps }) {
   return <Side_Title {...restProps}>{children}</Side_Title>
 }
-Account.Name = function AccountName({ children, ...restProps }) {
-  return <Name {...restProps}>{children}</Name>
+Account.Email = function AccountEmail({ children, ...restProps }) {
+  return <Email {...restProps}>{children}</Email>
+}
+Account.Input = function AccountInput({ children, ...restProps }) {
+  return <Input {...restProps}>{children}</Input>
 }
 Account.Password = function AccountPassword({ children, ...restProps }) {
   return <Password {...restProps}>{children}</Password>
@@ -118,7 +124,10 @@ Account.Main = function AccountMain({ children, ...restProps }) {
 Account.Container = function AccountContainer({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>
 }
+Account.VisaIcon = function AccountVisaIcon({ children, ...restProps }) {
+  return <FontAwesome {...restProps}>{children}</FontAwesome>
+}
 
-// Account.VisaIcon = function AccountVisaIcon({ children, ...restProps }) {
-//   return <FontAwesomeIcon {...restProps}>{children}</FontAwesomeIcon>
-// }
+Account.Redeem = function AccountRedeem({ children, ...restProps }) {
+  return <Redeem {...restProps}>{children}</Redeem>
+}
