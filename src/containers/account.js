@@ -80,7 +80,7 @@ export function SelectAccountContainer({ children, user }) {
     .get()
     .then(function (doc) {
       if (doc.exists) {
-        console.log('Document data:', doc.data())
+        // console.log('Document data:', doc.data())
         setstripeId(doc.data().StripeId)
         return setStripeData(doc.data().subscriptionId)
       } else {
@@ -92,13 +92,13 @@ export function SelectAccountContainer({ children, user }) {
       console.log('Error getting document:', error)
     })
   }
-  console.log(StripeData)
+  // console.log(StripeData)
 
   async function getUser() {
     const requested = await axios.get(
       `https://8xxlk.sse.codesandbox.io/customer/${stripeId}`
     )
-    console.log(requested.data.source)
+    // console.log(requested.data.source)
     setLast4(requested.data.default_source.last4)
     // setBilling(requested.data.billing_details);
   }
@@ -117,7 +117,7 @@ export function SelectAccountContainer({ children, user }) {
           .updateEmail(changeEmail)
           .then(function () {
             // Update successful.
-            console.log(user.email)
+            // console.log(user.email)
           })
           .catch(function (error) {
             // An error happened.
@@ -144,15 +144,15 @@ export function SelectAccountContainer({ children, user }) {
   })
 
   useEffect(() => {
-    console.log(changePhone)
+    // console.log(changePhone)
   }, [changePhone])
 
   useEffect(() => {
-    console.log(changePayment)
+    // console.log(changePayment)
   }, [changePayment])
 
   useEffect(() => {
-    console.log(changeRedeem)
+    // console.log(changeRedeem)
   }, [changeRedeem])
 
   return (
